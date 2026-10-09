@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SportPulse AI - Ultimate Sports Intelligence & Live Rules Chatbot</title>
+  <meta name="description" content="Explore complete sports information, player statistics, head-to-head rivalry records, tournament histories, rule explanations, and live match scores with SportPulse AI.">
+  <meta name="keywords" content="sports chatbot, football stats, cricket records, NBA scores, F1 rules, tennis grand slams, sports AI assistant">
+  <meta name="theme-color" content="#080c14">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="SportPulse AI - Ultimate Sports Intelligence Chatbot">
+  <meta property="og:description" content="Your 24/7 sports intelligence assistant for soccer, cricket, basketball, tennis, Formula 1, and the Olympics.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon & Stylesheet -->
+  <link rel="icon" type="image/jpeg" href="assets/avatar.jpg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-midnight">
+
+  <!-- TOP LIVE SPORTS TICKER -->
+  <header class="ticker-container" id="top-ticker" aria-label="Live sports score ticker">
+    <div class="ticker-label">
+      <span class="live-dot" aria-hidden="true"></span>
+      <span>SPORTS PULSE LIVE</span>
+    </div>
+    <div class="ticker-track-wrapper">
+      <div class="ticker-track" id="live-ticker-track">
+        <!-- Injected via app.js -->
+      </div>
+    </div>
+  </header>
+
+  <!-- APP MAIN HEADER -->
+  <nav class="app-header" aria-label="Main Navigation">
+    <div class="header-brand">
+      <button class="mobile-menu-btn" id="sidebar-toggle" aria-label="Toggle sports sidebar menu">
+        ☰
+      </button>
+      <div class="avatar-wrapper">
+        <img src="assets/avatar.jpg" alt="SportPulse AI mascot avatar" class="brand-avatar" id="brand-avatar-img">
+        <span class="online-status-dot" title="Engine Online"></span>
+      </div>
+      <div class="brand-info">
+        <h1>SportPulse AI</h1>
+        <span class="brand-tagline">Elite Sports Intelligence Engine</span>
+      </div>
+    </div>
+
+    <div class="header-controls">
+      <a href="industrial/index.html" class="control-btn" style="text-decoration:none;" title="Switch to Industrial Operations Dashboard">
+        🏭 Industrial Cockpit
+      </a>
+      <button class="control-btn active" id="toggle-sound" title="Toggle UI sound feedback">
+        🔊 Sound On
+      </button>
+      <button class="control-btn" id="toggle-tts" title="Toggle audio voice narration">
+        🗣️ Voice Off
+      </button>
+
+      <select class="theme-select-box" id="theme-select" title="Change stadium color theme" aria-label="Select theme">
+        <option value="midnight">🏟️ Midnight Stadium</option>
+        <option value="cyber">⚡ Cyber Court</option>
+        <option value="crimson">🥊 Crimson Arena</option>
+      </select>
+    </div>
+  </nav>
+
+  <!-- MAIN APP CONTAINER -->
+  <div class="app-container">
+    
+    <!-- LEFT SIDEBAR: TOPICS & BOOKMARKS -->
+    <aside class="app-sidebar" id="app-sidebar" aria-label="Sports Explorer Sidebar">
+      <div class="sidebar-tabs">
+        <button class="tab-btn active" id="tab-topics">Sports Topics</button>
+        <button class="tab-btn" id="tab-saved">Saved Insights ⭐</button>
+      </div>
+
+      <!-- Topics View -->
+      <div class="sidebar-content" id="view-topics">
+        
+        <!-- Category Quick Buttons -->
+        <div>
+          <div class="sidebar-section-title">
+            <span>🏅</span> Major Sports Arenas
+          </div>
+          <div class="sports-category-grid">
+            <button class="cat-pill-btn" onclick="SportPulseApp.askBot('Football')">
+              <span>⚽</span> Football / Soccer
+            </button>
+            <button class="cat-pill-btn" onclick="SportPulseApp.askBot('Cricket')">
+              <span>🏏</span> Cricket
+            </button>
+            <button class="cat-pill-btn" onclick="SportPulseApp.askBot('Basketball')">
+              <span>🏀</span> Basketball
+            </button>
+            <button class="cat-pill-btn" onclick="SportPulseApp.askBot('Tennis')">
+              <span>🎾</span> Tennis
+            </button>
+            <button class="cat-pill-btn" onclick="SportPulseApp.askBot('Formula 1')">
+              <span>🏎️</span> Formula 1
+            </button>
+            <button class="cat-pill-btn" onclick="SportPulseApp.askBot('Olympics')">
+              <span>🏅</span> Olympic Games
+            </button>
+            <button class="cat-pill-btn" onclick="SportPulseApp.askBot('American Football')">
+              <span>🏈</span> NFL
+            </button>
+            <button class="cat-pill-btn" onclick="SportPulseApp.askBot('Live Scores')">
+              <span>⚡</span> Live Center
+            </button>
+          </div>
+        </div>
+
+        <!-- Curated Topic Prompts -->
+        <div>
+          <div class="sidebar-section-title">
+            <span>🔥</span> Trending Discussions
+          </div>
+          <div class="quick-topics-list">
+            <button class="topic-item-btn" onclick="SportPulseApp.askBot('Messi vs Ronaldo')">
+              <span>⚽ Messi vs Ronaldo GOAT debate</span>
+              <span class="topic-arrow">➔</span>
+            </button>
+            <button class="topic-item-btn" onclick="SportPulseApp.askBot('Explain LBW in Cricket')">
+              <span>🏏 How does the LBW rule work?</span>
+              <span class="topic-arrow">➔</span>
+            </button>
+            <button class="topic-item-btn" onclick="SportPulseApp.askBot('Jordan vs LeBron')">
+              <span>🏀 Michael Jordan vs LeBron James</span>
+              <span class="topic-arrow">➔</span>
+            </button>
+            <button class="topic-item-btn" onclick="SportPulseApp.askBot('What is DRS in F1?')">
+              <span>🏎️ What is DRS & how does it work?</span>
+              <span class="topic-arrow">➔</span>
+            </button>
+            <button class="topic-item-btn" onclick="SportPulseApp.askBot('Virat Kohli')">
+              <span>🏏 Virat Kohli records & centuries</span>
+              <span class="topic-arrow">➔</span>
+            </button>
+            <button class="topic-item-btn" onclick="SportPulseApp.askBot('Tennis Big Three records')">
+              <span>🎾 Djokovic vs Nadal vs Federer</span>
+              <span class="topic-arrow">➔</span>
+            </button>
+            <button class="topic-item-btn" onclick="SportPulseApp.askBot('FIFA World Cup winners')">
+              <span>🏆 World Cup history & champions</span>
+              <span class="topic-arrow">➔</span>
+            </button>
+            <button class="topic-item-btn" onclick="SportPulseApp.askBot('Offside rule')">
+              <span>⚽ Explain football offside rule</span>
+              <span class="topic-arrow">➔</span>
+            </button>
+            <button class="topic-item-btn" onclick="SportPulseApp.askBot('Play Quiz')">
+              <span>🎯 Start sports trivia challenge</span>
+              <span class="topic-arrow">➔</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Saved Bookmarks View -->
+      <div class="sidebar-content" id="view-saved" style="display:none;">
+        <div class="sidebar-section-title">
+          <span>⭐</span> Bookmarked Answers
+        </div>
+        <div id="bookmarks-list">
+          <div class="empty-state">No saved insights yet. Click the ⭐ icon on any answer to bookmark it!</div>
+        </div>
+      </div>
+
+      <!-- Sidebar Bottom Action Utilities -->
+      <div class="sidebar-footer">
+        <button class="sidebar-action-btn" onclick="SportPulseApp.exportChatHistory()" title="Download conversation as file">
+          <span>💾</span> Export Chat
+        </button>
+        <button class="sidebar-action-btn" onclick="SportPulseApp.clearChat()" title="Reset chat messages">
+          <span>🗑️</span> Clear
+        </button>
+      </div>
+    </aside>
+
+    <!-- RIGHT/CENTER: INTERACTIVE CHAT STREAM -->
+    <main class="chat-main-area" id="chat-main">
+      
+      <!-- Messages Scroll Area -->
+      <section class="chat-messages" id="chat-messages" aria-live="polite">
+        
+        <!-- Welcome Hero Banner -->
+        <article class="welcome-hero" id="welcome-hero">
+          <img src="assets/avatar.jpg" alt="SportPulse mascot" class="hero-avatar-large">
+          <h2>Welcome to SportPulse AI</h2>
+          <p class="hero-subtitle">
+            Your all-in-one encyclopedia for sports legends, real-time match data, tournament histories, tactical rule breakdowns, and trivia challenges.
+          </p>
+
+          <div class="hero-sports-badges">
+            <span class="hero-badge">⚽ Football</span>
+            <span class="hero-badge">🏏 Cricket</span>
+            <span class="hero-badge">🏀 Basketball</span>
+            <span class="hero-badge">🎾 Tennis</span>
+            <span class="hero-badge">🏎️ Formula 1</span>
+            <span class="hero-badge">🏅 Olympics</span>
+          </div>
+
+          <div class="hero-suggest-title">Try asking an iconic question:</div>
+          <div class="hero-prompts-grid">
+            <button class="hero-prompt-btn" onclick="SportPulseApp.askBot('Messi vs Ronaldo')">
+              ⚽ Messi vs Ronaldo
+            </button>
+            <button class="hero-prompt-btn" onclick="SportPulseApp.askBot('Virat Kohli')">
+              🏏 Virat Kohli Stats
+            </button>
+            <button class="hero-prompt-btn" onclick="SportPulseApp.askBot('Jordan vs LeBron')">
+              🏀 Jordan vs LeBron
+            </button>
+            <button class="hero-prompt-btn" onclick="SportPulseApp.askBot('Explain LBW in Cricket')">
+              🏏 LBW Cricket Rule
+            </button>
+            <button class="hero-prompt-btn" onclick="SportPulseApp.askBot('What is DRS in F1?')">
+              🏎️ DRS Rule in F1
+            </button>
+            <button class="hero-prompt-btn" onclick="SportPulseApp.askBot('Live Scores')">
+              ⚡ Live Scores
+            </button>
+            <button class="hero-prompt-btn" onclick="SportPulseApp.askBot('Play Quiz')">
+              🎯 Sports Quiz
+            </button>
+            <button class="hero-prompt-btn" onclick="SportPulseApp.askBot('Tell me a fun sports fact')">
+              🎲 Random Trivia
+            </button>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- Chat Bottom Input Controls -->
+      <footer class="chat-input-wrapper">
+        
+        <!-- Quick Action Pills Strip -->
+        <div class="quick-pills-bar" aria-label="Quick category chips">
+          <button class="quick-action-pill" onclick="SportPulseApp.askBot('Football')">⚽ Football</button>
+          <button class="quick-action-pill" onclick="SportPulseApp.askBot('Cricket')">🏏 Cricket</button>
+          <button class="quick-action-pill" onclick="SportPulseApp.askBot('Basketball')">🏀 NBA</button>
+          <button class="quick-action-pill" onclick="SportPulseApp.askBot('Tennis')">🎾 Tennis</button>
+          <button class="quick-action-pill" onclick="SportPulseApp.askBot('Formula 1')">🏎️ Formula 1</button>
+          <button class="quick-action-pill" onclick="SportPulseApp.askBot('Live Scores')">⚡ Live Scores</button>
+          <button class="quick-action-pill" onclick="SportPulseApp.askBot('Play Quiz')">🎯 Play Quiz</button>
+          <button class="quick-action-pill" onclick="SportPulseApp.askBot('Sports Fun Fact')">🎲 Random Fact</button>
+        </div>
+
+        <!-- Text & Voice Input Form -->
+        <form class="chat-input-form" id="chat-form">
+          <button type="button" class="input-tool-btn" id="mic-button" title="Speak your question (Microphone)">
+            🎙️
+          </button>
+          
+          <input 
+            type="text" 
+            id="user-input" 
+            class="chat-text-input" 
+            placeholder="Ask about Messi vs Ronaldo, LBW rule, NBA scores, F1 DRS, or Tennis..." 
+            autocomplete="off"
+            aria-label="Ask sports question"
+            required
+          />
+
+          <button type="submit" class="send-button" id="send-button" title="Send sports question" aria-label="Send">
+            ➔
+          </button>
+        </form>
+
+      </footer>
+
+    </main>
+
+  </div>
+
+  <!-- Toast Notification Popup -->
+  <div class="toast-notification" id="toast-notification" role="status" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="storage.js"></script>
+  <script src="sports-db.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
